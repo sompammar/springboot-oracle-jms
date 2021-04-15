@@ -1,26 +1,16 @@
-References
+# Springboot Application with Oracle ActiveMQ
 
-[Sample](http://zetcode.com/articles/springwebfirst/)
+Refer to following classes
+* [JmsMessageSender](src/main/java/com/example/springboot/jms/JmsMessageSender.java)
+* [JmsMessageListener](src/main/java/com/example/springboot/jms/JmsMessageListener.java)
 
-[https://octopus.com/blog/defining-tomcat-context-paths](https://octopus.com/blog/defining-tomcat-context-paths)
-
-To change the context root in tomcat copy the file [test#testservice.xml](./test#testservice.xml) to {tomcat}/conf/Catalina/localhost
-
-
-## How to test 
-
-The code runs on test/testservice context path
-
-### Test req
-POST
+### How to build
+```shell
+./gradlew clean build -x test && java -jar build/libs/spring-boot-0.0.1-SNAPSHOT.war 
 ```
-curl --location --request POST 'http://localhost:8080/test/testservice/req' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "requestType" : "Request2",
-    "reqDef" : {
-        "param1" : "parameter1Value",
-        "param2" : "parameter2 Value"
-    }
-}'
+### How to test
+
+```shell
+	curl --location --request POST 'http://localhost:8080/oraclejms/send?msg=hello' \
+--data-raw ''
 ```
